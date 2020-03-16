@@ -11,4 +11,3 @@ http://www.phpin.net/tools/plupload/
 
 https://github.com/yanwei920623
 
-SHA256:LQruyhu5aQNi1hnUJeuz6inhN9fI9aWfu4Y/W9rMwi0
