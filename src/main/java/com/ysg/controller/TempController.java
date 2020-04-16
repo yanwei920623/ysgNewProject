@@ -1,18 +1,16 @@
 package com.ysg.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by Administrator on 2020/3/14.
  */
 @Controller
-@RequestMapping("/index")
-public class IndexController {
+@RequestMapping("/temp")
+public class TempController {
 
-    @GetMapping("/index")
-    public String index() {return "index";}
+    @GetMapping("/demo1")
+    public String index() {return "temples/tempIndex";}
 }
