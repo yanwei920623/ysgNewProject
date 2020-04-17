@@ -11,6 +11,12 @@
 	{{msg + ' ' + showMsg}}
 	<br>
 	{{msg}} {{showMsg}}
+	<br>
+	<h2>{{url}}</h2>
+	v-pre：<span v-pre>{{url}}</span>
+	<br>
+	<h2 v-html="url"></h2>
+
 </div>
 
 <script src="/js/vue.js"></script>
@@ -19,7 +25,8 @@
 		el:'#app',
 		data:{
 			msg: 'study Vue demo1',
-			showMsg : 'go to'
+			showMsg : 'go to dome1',
+			url:'<a href="www.baidu.com">百度一下</a>'
 		}
 	})
 </script>
