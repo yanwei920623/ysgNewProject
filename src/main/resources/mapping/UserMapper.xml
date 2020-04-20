@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ysg.mapper.UserMapper" >
+
+    <sql id="select_Base_Column">
+        id,username,password,phone,created,updated
+    </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="int" resultType="com.ysg.entity.User">
+        select
+        <include refid="select_Base_Column"/>
+        from tb_user
+        where id = #{id}
+
+    </select>
+
+
+    <select id="listUser"  resultType="com.ysg.entity.User">
+        select
+        <if test="map != null">
+            <foreach  collection="map" item="map" index="key" separator="," >
+                <if test='map == "A" '>
+                    ifnull(a.city,'空') city
+                </if>
+                <if test='map == "B" '>
+                    ifnull(b.address,'空') address
+                </if>
+                <if test='map == "C" '>
+                    ifnull(c.payment,'空') payment
+                </if>
+                <if test='map == "D" '>
+                    ifnull(d.province,'空') province
+                </if>
+            </foreach>
+        </if>
+        from tb_areas as t
+        <foreach item="map1" collection="map"  index="key">
+            <if test='map1 == "A"'>
+                left join tb_cities as a on a.id = t.id
+            </if>
+            <if test='map1 == "B"'>
+                left join tb_address as b on b.id = t.id
+            </if>
+            <if test='map1 == "C"'>
+                left join tb_order as c on c.id = t.id
+            </if>
+            <if test='map1 == "D"'>
+                left join tb_provinces as d on d.id = t.id
+            </if>
+        </foreach>
+
+    </select>
+
+
+    <insert id="insert" parameterType="com.ysg.entity.User" >
+        insert into tb_user (id,username,password,phone,created,updated)
+        values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{phone,jdbcType=VARCHAR},#{created,jdbcType=DATE},#{updated,jdbcType=DATE})
+    </insert>
+
+
+</mapper>
